@@ -25,8 +25,8 @@ if [[ $# -eq 2 ]]; then # test for two arguments
     # create the new npm files
     npm init -y
 
-    # install the editor dependencies
-    npm i eslint eslint-config-airbnb-base eslint-plugin-import
+    # install the editor dev dependencies
+    npm i -D eslint eslint-config-airbnb-base eslint-plugin-import
 
     # if it's for node, we need type : module for import
     if [ $2 = 'basic-node-swe1-template' ]; then # test for two arguments
@@ -34,7 +34,6 @@ if [[ $# -eq 2 ]]; then # test for two arguments
       # add module type for import syntax
       sed -i '' -e '$ d' package.json
       echo ',"type":"module"}' >> package.json
-      #echo "}" >> package.json
 
     # later we can make other mods for other repo types
     elif [[ $# -eq 2 && $2 = 'swe101' ]]; then # test for two arguments
