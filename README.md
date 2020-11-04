@@ -23,5 +23,5 @@ git config --global init.defaultBranch main
 # Run the command:
 
 ```
-$ ./repo-template-script/create-repo new-repo-name template-repo-name
+$ ./repo-template-script/create-repo.sh new-repo-name template-repo-name
 ```
