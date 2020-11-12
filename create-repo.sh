@@ -26,7 +26,7 @@ if [[ $# -eq 2 ]]; then # test for two arguments
     npm init -y
 
     # install the editor dev dependencies
-    npm i -D eslint eslint-config-airbnb-base eslint-plugin-import
+    npm i -D eslint eslint-config-airbnb-base eslint-plugin-import nodemon
 
     # if it's for node, we need type : module for import
     if [ $2 = 'base-node-swe1-template' ]; then # test for two arguments
