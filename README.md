@@ -25,3 +25,47 @@ git config --global init.defaultBranch main
 ```
 $ ./repo-template-script/create-repo.sh new-repo-name template-repo-name
 ```
+
+# repo types
+
+At the top of the script file is a hash of all the packages that need to be installed for each repo type.
+
+For example the hash says that making an express-pg app installs express, ejs and pg.
+
+```
+$ ./repo-template-script/create-repo.sh <SOME_NAME> base-node-swe1-template express-pg
+```
+
+If you want to create a new repo type add a key and value to the hash.
+
+### Recipes
+
+basic node cli repo
+```
+$ ./repo-template-script/create-repo.sh <SOME_NAME> base-node-swe1-template
+```
+
+basic CRUD express repo - installs express
+```
+$ ./repo-template-script/create-repo.sh <SOME_NAME> base-node-swe1-template express-basic
+```
+
+CRUD express EJS
+```
+$ ./repo-template-script/create-repo.sh <SOME_NAME> base-node-swe1-template express-ejs
+```
+
+CRUD express PG
+```
+$ ./repo-template-script/create-repo.sh <SOME_NAME> base-node-swe1-template express-pg
+```
+
+basic bootstrap repo (has empty html / css files / link / script)
+```
+$ ./repo-template-script/create-repo.sh <SOME_NAME> base-bootstrap-swe1-template
+```
+
+basic html / css swe101 repo (no files)
+```
+$ ./repo-template-script/create-repo.sh <SOME_NAME> base-css-html-swe1-template
+```

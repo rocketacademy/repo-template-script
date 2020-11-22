@@ -1,10 +1,18 @@
-#!/bin/bash
+#!/usr/local/bin/bash
+
+declare -A PACKAGE_LISTS
+
+PACKAGE_LISTS=(
+  ["express-basic"]="express"
+  ["express-ejs"]="express ejs"
+  ["express-pg"]="express ejs pg"
+)
 
 set -e # exit if anything goes wrong
 
 echo "Running..."
 
-if [[ $# -eq 2 ]]; then # test for two arguments
+if [[ $# -ge 2 ]]; then # test for two arguments
 
     # use variables for the arguments
     REPO_NAME=$1
@@ -25,18 +33,27 @@ if [[ $# -eq 2 ]]; then # test for two arguments
     # create the new npm files
     npm init -y
 
-    # install the editor dev dependencies
+    # install the editor dependencies
     npm i -D eslint eslint-config-airbnb-base eslint-plugin-import
 
     # if it's for node, we need type : module for import
-    if [ $2 = 'base-node-swe1-template' ]; then # test for two arguments
+    if [ "${TEMPLATE_NAME}" = 'base-node-swe1-template' ]; then
 
       # add module type for import syntax
       sed -i '' -e '$ d' package.json
       echo ',"type":"module"}' >> package.json
 
+      if [[ $# -eq 3 ]]; then # test for a third arg
+
+        NODE_REPO_TYPE=$3
+
+        eval "npm i ${PACKAGE_LISTS[$NODE_REPO_TYPE]}"
+        npm i -D nodemon
+
+      fi # otherwise its the default
+
     # later we can make other mods for other repo types
-    elif [[ $# -eq 2 && $2 = 'swe101' ]]; then # test for two arguments
+    elif [ "${TEMPLATE_NAME}" = 'swe101' ]; then
       echo "creating swe101 repo"
     fi
 
