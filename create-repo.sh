@@ -6,6 +6,14 @@ PACKAGE_LISTS=(
   ["express-basic"]="express"
   ["express-ejs"]="express ejs"
   ["express-pg"]="express ejs pg"
+  ["mvc"]="express ejs pg sequelize method-override cookie-parser"
+)
+
+DEV_PACKAGE_LISTS=(
+  ["express-basic"]="nodemon"
+  ["express-ejs"]="nodemon"
+  ["express-pg"]="nodemon"
+  ["mvc"]="nodemon sequelize-cli"
 )
 
 set -e # exit if anything goes wrong
@@ -38,17 +46,19 @@ if [[ $# -ge 2 ]]; then # test for two arguments
 
     # if it's for node, we need type : module for import
     if [ "${TEMPLATE_NAME}" = 'base-node-swe1-template' ]; then
-
       # add module type for import syntax
       sed -i '' -e '$ d' package.json
       echo ',"type":"module"}' >> package.json
+    fi
+
+    if [ "${TEMPLATE_NAME}" = 'base-mvc-swe1-template' ] || [ "${TEMPLATE_NAME}" = 'base-node-swe1-template' ]; then
 
       if [[ $# -eq 3 ]]; then # test for a third arg
 
         NODE_REPO_TYPE=$3
 
         eval "npm i ${PACKAGE_LISTS[$NODE_REPO_TYPE]}"
-        npm i -D nodemon
+        eval "npm i -D ${DEV_PACKAGE_LISTS[$NODE_REPO_TYPE]}"
 
       fi # otherwise its the default
 
