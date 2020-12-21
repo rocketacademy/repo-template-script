@@ -69,3 +69,8 @@ basic html / css swe101 repo (no files)
 ```
 $ ./repo-template-script/create-repo.sh <SOME_NAME> base-css-html-swe1-template
 ```
+
+MVC / sequelize
+```
+$ ./repo-template-script/create-repo.sh <SOME_NAME> base-mvc-swe1-template mvc
+```
