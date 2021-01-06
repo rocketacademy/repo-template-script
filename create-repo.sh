@@ -7,13 +7,51 @@ PACKAGE_LISTS=(
   ["express-ejs"]="express ejs"
   ["express-pg"]="express ejs pg"
   ["mvc"]="express ejs pg sequelize method-override cookie-parser"
+  # TODO: mvc webpack
+  ["react"]="express ejs pg sequelize method-override cookie-parser"
 )
 
 DEV_PACKAGE_LISTS=(
   ["express-basic"]="nodemon"
   ["express-ejs"]="nodemon"
   ["express-pg"]="nodemon"
-  ["mvc"]="nodemon sequelize-cli"
+  ["mvc"]="nodemon sequelize-cli faker"
+  # TODO: mvc webpack
+  ["react"]="nodemon 
+             sequelize-cli 
+             faker  
+             webpack  
+             webpack-cli  
+             webpack-merge  
+             @babel/core  
+             @babel/preset-env  
+             babel-loader  
+             css-loader  
+             html-webpack-plugin  
+             mini-css-extract-plugin  
+             sass  
+             sass-loader  
+             axios"
+
+  ["react-reload"]="nodemon  
+                    sequelize-cli  
+                    faker  
+                    webpack  
+                    webpack-cli  
+                    webpack-merge  
+                    @babel/core  
+                    @babel/preset-env  
+                    babel-loader  
+                    css-loader  
+                    html-webpack-plugin  
+                    mini-css-extract-plugin  
+                    sass  
+                    sass-loader  
+                    axios  
+                    @pmmmwh/react-refresh-webpack-plugin  
+                    react-refresh  
+                    webpack-dev-middleware  
+                    webpack-dev-server"
 )
 
 set -e # exit if anything goes wrong
@@ -51,7 +89,7 @@ if [[ $# -ge 2 ]]; then # test for two arguments
       echo ',"type":"module"}' >> package.json
     fi
 
-    if [ "${TEMPLATE_NAME}" = 'base-mvc-swe1-template' ] || [ "${TEMPLATE_NAME}" = 'base-node-swe1-template' ]; then
+    if [ "${TEMPLATE_NAME}" = 'base-mvc-swe1-template' ] || [ "${TEMPLATE_NAME}" = 'base-node-swe1-template' ] || [ "${TEMPLATE_NAME}" = 'base-react-swe1-template' ]; then
 
       if [[ $# -eq 3 ]]; then # test for a third arg
 

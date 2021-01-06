@@ -74,3 +74,13 @@ MVC / sequelize
 ```
 $ ./repo-template-script/create-repo.sh <SOME_NAME> base-mvc-swe1-template mvc
 ```
+
+React MVC
+```
+$ ./repo-template-script/create-repo.sh <SOME_NAME> base-react-swe1-template react
+```
+
+React Reload MVC
+```
+$ ./repo-template-script/create-repo.sh <SOME_NAME> base-react-swe1-template react-reload
+```
