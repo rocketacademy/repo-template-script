@@ -9,6 +9,7 @@ PACKAGE_LISTS=(
   ["mvc"]="express ejs pg sequelize method-override cookie-parser"
   # TODO: mvc webpack
   ["react"]="express ejs pg sequelize method-override cookie-parser"
+  ["react-reload"]="express ejs pg sequelize method-override cookie-parser"
 )
 
 DEV_PACKAGE_LISTS=(
@@ -17,41 +18,51 @@ DEV_PACKAGE_LISTS=(
   ["express-pg"]="nodemon"
   ["mvc"]="nodemon sequelize-cli faker"
   # TODO: mvc webpack
-  ["react"]="nodemon 
-             sequelize-cli 
-             faker  
-             webpack  
-             webpack-cli  
-             webpack-merge  
-             @babel/core  
-             @babel/preset-env  
-             babel-loader  
-             css-loader  
-             html-webpack-plugin  
-             mini-css-extract-plugin  
-             sass  
-             sass-loader  
-             axios"
+  ["react"]="nodemon \
+             sequelize-cli \
+             faker \
+             webpack \
+             webpack-cli \
+             webpack-merge \
+             @babel/core \
+             @babel/preset-env \
+             @babel/preset-react \
+             babel-loader \
+             css-loader \
+             html-webpack-plugin \
+             mini-css-extract-plugin \
+             sass \
+             sass-loader \
+             axios \
+             webpack-dev-middleware \
+             webpack-dev-server \
+             react \
+             react-dom"
 
-  ["react-reload"]="nodemon  
-                    sequelize-cli  
-                    faker  
-                    webpack  
-                    webpack-cli  
-                    webpack-merge  
-                    @babel/core  
-                    @babel/preset-env  
-                    babel-loader  
-                    css-loader  
-                    html-webpack-plugin  
-                    mini-css-extract-plugin  
-                    sass  
-                    sass-loader  
-                    axios  
-                    @pmmmwh/react-refresh-webpack-plugin  
-                    react-refresh  
-                    webpack-dev-middleware  
-                    webpack-dev-server"
+
+  ["react-reload"]="nodemon \
+                    sequelize-cli \
+                    faker \
+                    webpack \
+                    webpack-cli \
+                    webpack-merge \
+                    @babel/core \
+                    @babel/preset-env \
+                    @babel/preset-react \
+                    babel-loader \
+                    css-loader \
+                    html-webpack-plugin \
+                    mini-css-extract-plugin \
+                    sass \
+                    sass-loader \
+                    axios \
+                    @pmmmwh/react-refresh-webpack-plugin \
+                    react-refresh \
+                    webpack-dev-middleware \
+                    webpack-hot-middleware \
+                    webpack-dev-server \
+                    react \
+                    react-dom"
 )
 
 set -e # exit if anything goes wrong
@@ -73,8 +84,11 @@ if [[ $# -ge 2 ]]; then # test for two arguments
     # cd inside
     cd $REPO_NAME
 
-    # the dir doesnt have the gh files yet. pull them down
+    # get any files made from the template
     git pull origin main
+
+    # the dir doesnt have the gh files yet. pull them down
+    #git pull origin main
 
     # create the new npm files
     npm init -y
@@ -92,11 +106,20 @@ if [[ $# -ge 2 ]]; then # test for two arguments
     if [ "${TEMPLATE_NAME}" = 'base-mvc-swe1-template' ] || [ "${TEMPLATE_NAME}" = 'base-node-swe1-template' ] || [ "${TEMPLATE_NAME}" = 'base-react-swe1-template' ]; then
 
       if [[ $# -eq 3 ]]; then # test for a third arg
+        echo "template name:"
+        echo TEMPLATE_NAME
 
         NODE_REPO_TYPE=$3
 
-        eval "npm i ${PACKAGE_LISTS[$NODE_REPO_TYPE]}"
-        eval "npm i -D ${DEV_PACKAGE_LISTS[$NODE_REPO_TYPE]}"
+        deps="npm i ${PACKAGE_LISTS[$NODE_REPO_TYPE]}"
+        echo "installing deps"
+        echo $deps
+        eval "$deps"
+
+        devDeps="npm i -D ${DEV_PACKAGE_LISTS[$NODE_REPO_TYPE]}"
+        echo "installing DEV deps"
+        echo $devDeps
+        eval "$devDeps"
 
       fi # otherwise its the default
 
