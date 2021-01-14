@@ -40,7 +40,9 @@ DEV_PACKAGE_LISTS=(
              react-dom"
 
 
-  ["react-reload"]="nodemon \
+  ["react-reload"]="eslint-plugin-react \
+                    eslint-plugin-react-hooks \
+                    nodemon \
                     sequelize-cli \
                     faker \
                     webpack \
