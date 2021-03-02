@@ -144,14 +144,14 @@ if [[ $# -ge 2 ]]; then # test for two arguments
   npm i -D eslint eslint-config-airbnb-base eslint-plugin-import
 
   # if it's for node, we need "type": "module" for import
-  if [ "${TEMPLATE_NAME}" = 'base-node-swe1-template' ]; then
+  if [ "${TEMPLATE_NAME}" = 'base-node-bootcamp-template' ]; then
     # add module type for import syntax
     sed -i '' -e '$ d' package.json
     echo ',"type": "module"}' >> package.json
   fi
 
   # install repo-type-specific dependencies
-  if [ "${TEMPLATE_NAME}" = 'base-mvc-swe1-template' ] || [ "${TEMPLATE_NAME}" = 'base-node-swe1-template' ] || [ "${TEMPLATE_NAME}" = 'base-react-swe1-template' ]; then
+  if [ "${TEMPLATE_NAME}" = 'base-mvc-bootcamp-template' ] || [ "${TEMPLATE_NAME}" = 'base-node-bootcamp-template' ] || [ "${TEMPLATE_NAME}" = 'base-react-bootcamp-template' ]; then
 
     if [[ $# -eq 3 ]]; then # test for a third arg
       echo "template name:"
@@ -176,8 +176,8 @@ if [[ $# -ge 2 ]]; then # test for two arguments
     fi # otherwise its the default
 
   # later we can make other mods for other repo types
-  elif [ "${TEMPLATE_NAME}" = 'swe101' ]; then
-    echo "creating swe101 repo"
+  elif [ "${TEMPLATE_NAME}" = 'basics' ]; then
+    echo "creating basics repo"
   fi
 
   # add and push the new files
